@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>休闲鞋生产线云平台实时看板</title>
+    <link href="css/element.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<!--header-->
+<div class="header">
+    <div class="bg_header">
+        <div class="header_nav fl t_title">
+            	休闲鞋生产线云平台实时看板
+        </div> 
+    </div>
+</div>
+
+<!--main-->
+<div id="main" class="data_content">
+    <!--div class="data_time">
+        温馨提示: 点击模块后跳转至详情页面。        
+    </div-->
+
+    <div class="data_main">
+        <div class="main_left fl">
+            <div class="left_1 t_btn6" style="cursor: pointer;">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div> 
+                <div class="main_title">
+                    <img src="img/t_1.png" alt="">
+                  	当前闲忙程度
+                </div>
+                <div id="chart_1" class="chart" style="width:100%;height: 280px;"></div>
+            </div>
+            <div class="left_2" style="cursor: pointer;">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div> 
+                <div class="main_title">
+                    <img src="img/t_2.png" alt="">
+                    	产量统计图
+                </div>
+                <div id="chart_2" class="chart t_btn9" style="width:100%;height: 280px;"></div>
+            </div>
+        </div>
+        <div class="main_center fl">
+            <div class="center_text">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                 <!--右下边框-->
+                 <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div> 
+                <div class="main_title">
+                    <img src="img/t_3.png" alt="">
+                    	状态监控
+                </div>
+                <div id="imgFrame" style="position:relative;">
+	                <img src="img/deviceMonitor.png" style="max-width:100%" />
+	                <!--生产数量统计-->
+	                <el-button plain type="danger" class="device-count" style="top:1%;left:1.3%;">当班产量</el-button>
+	                <el-button type="danger" class="device-count" style="top:1%;left:8.56%;font-weight:bold;">{{useages[0].Data.NowN}}</el-button>
+	                <el-button plain type="danger" class="device-count" style="top:8%;left:0.56%;">总产量</el-button>
+	                <el-button type="danger" class="device-count" style="top:8%;left:8.56%;font-weight:bold;">{{useages[0].Data.AllN}}</el-button>
+	                <el-button plain type="danger" class="device-count" style="top:15%;left:0.56%;">生产节拍</el-button>
+	                <el-button type="danger" class="device-count" style="top:15%;left:8.56%;font-weight:bold;">{{useages[0].Data.ProductionBeat}}</el-button>
+	                <el-button plain type="danger" class="device-count" style="top:70%;left:45%;">总订单号</el-button>
+	                <el-button type="danger" class="device-count" style="top:70%;left:53%;font-weight:bold;">{{useages[0].Data.OrderID}}</el-button>
+	                <el-button plain type="danger" class="device-count" style="top:77%;left:45%;">子订单号</el-button>
+	                <el-button type="danger" class="device-count" style="top:77%;left:53%;font-weight:bold;">{{useages[0].Data.ChildID}}</el-button>
+	                <el-button plain type="danger" class="device-count" style="top:84%;left:45%;">运行状态</el-button>
+	                <el-button type="danger" class="device-count" style="top:84%;left:53%;font-weight:bold;">{{useages[0].Data.Linestatus}}</el-button>
+	                <!--设备状态按钮-->
+	                <template v-for="(btn,index) of deviceBtns">
+	                    <sam-devicebtn :param="btn" :index="index"></sam-devicebtn>
+	                </template>
+	                <i v-if="showMask" class="el-icon-error" v-on:click="restoreScreen(0)" style="position:absolute;right:40px;bottom:20px;font-size:40px;"></i>
+	                <i v-else class="el-icon-rank" v-on:click="changeFullScreen(0)" style="position:absolute;right:40px;bottom:20px;font-size:40px;"></i>
+	            </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="data_bottom">
+        <div class="bottom_1 fl t_btn5" style="cursor: pointer;">
+            <!--左上边框-->
+            <div class="t_line_box">
+                <i class="t_l_line"></i> 
+                <i class="l_t_line"></i> 
+            </div> 
+            <!--右上边框-->
+            <div class="t_line_box">
+                <i class="t_r_line"></i> 
+                <i class="r_t_line"></i> 
+            </div> 
+            <!--左下边框-->
+            <div class="t_line_box">
+                <i class="l_b_line"></i> 
+                <i class="b_l_line"></i> 
+            </div> 
+                <!--右下边框-->
+                <div class="t_line_box">
+                <i class="r_b_line"></i> 
+                <i class="b_r_line"></i> 
+            </div>
+            <div class="main_title">
+                <img src="img/t_6.png" alt="">
+                	效率统计图
+            </div>
+            <div id="chart_3" class="chart t_btn9" style="width:100%;height: 280px;"></div>
+        </div>
+        <div class="bottom_center fl">
+            <div class="bottom_2 fl">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div>
+                <div class="main_title">
+                    <img src="img/t_7.png" alt="">
+                    	人工生产实时节拍
+                </div>
+                <div class="main_table t_btn8">
+                    <table>
+                        <thead>
+                        <tr>
+                        	<th>工位名称</th>
+                        	<th>工位编号</th> 
+                            <th>当前状态</th>
+                            <th>持续时间(秒)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="p in peopleBeat">
+                        	<td>{{p.stationNAME}}</td>
+                            <td>{{p.LocationSeq}}</td>
+                            <td>{{p.stationstate}}</td>
+                            <td>{{p.currtime}}</td>
+                        </tr> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="bottom_3 fl">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div>
+                <div class="main_title">
+                    <img src="img/t_7.png" alt="">
+                   	机器生产实时节拍
+                </div>
+                <div class="main_table t_btn2">
+                    <table>
+                        <thead>
+                        <tr>
+                        	<th>工位名称</th>
+                        	<th>工位编号</th> 
+                            <th>当前状态</th>
+                            <th>持续时间(秒)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="m in machineBeat">
+                        	<td>{{m.stationNAME}}</td>
+                            <td>{{m.LocationSeq}}</td>
+                            <td>{{m.stationstate}}</td>
+                            <td>{{m.currtime}}</td>
+                        </tr> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="bottom_4 fr">
+            <!--左上边框-->
+            <div class="t_line_box">
+                <i class="t_l_line"></i> 
+                <i class="l_t_line"></i> 
+            </div> 
+            <!--右上边框-->
+            <div class="t_line_box">
+                <i class="t_r_line"></i> 
+                <i class="r_t_line"></i> 
+            </div> 
+            <!--左下边框-->
+            <div class="t_line_box">
+                <i class="l_b_line"></i> 
+                <i class="b_l_line"></i> 
+            </div> 
+                <!--右下边框-->
+                <div class="t_line_box">
+                <i class="r_b_line"></i> 
+                <i class="b_r_line"></i> 
+            </div>
+            <div class="main_title">
+                <img src="img/t_7.png" alt="">
+               	品检合格率(日-周)
+            </div>
+            <div id="chart_4" class="echart fl" style="width:100%;height: 250px;margin-top: 15px;"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/element.js"></script>
+<script src="js/config.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/index.js"></script>
+
+
+</html>
